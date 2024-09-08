@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block title %}{{article.title}}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row mt-5 pt-5 mx-5">
+
+            <div class="col-8 article_detail_class">
+                <h1>{{ article.title }}</h1>
+                <p style="margin-top: 1rem; color: grey; font-style: italic;">By {{ article.author.first_name }} {{ article.author.last_name }} on {{ article.published_date }}</p>
+            
+                {% if article.image %}
+                    <img src="/media/{{article.image }}" alt="{{ article.title }}" style="max-width: 100%; height: auto;">
+                {% else %}
+                    <p>No image available for this article.</p>
+                {% endif %}
+            
+                <div class="mb-5 article_content_class">
+                    {{ article.content }}
+                </div>
+                <div style=" display: flex; justify-content: space-between;">
+                    <div  class="detail_buttton" >
+                        <a href="{% url 'article:article_list' %}" type="button">Article List</a>
+                    </div>
+                    <div>
+                        <div class="btn btn-primary" style="padding: 1rem; font-weight: bold;">
+                            <a href="{% url 'article:update' article.id %}"  type="button" style="text-decoration: none; color: white">
+                                Update
+                            </a>
+                        </div>
+
+                        <div class="btn btn-danger" style="padding: 1rem; font-weight: bold;">
+                            <a href="#!" type="button"  style="text-decoration: none; color: white" data-bs-toggle="modal" data-bs-target="#exampleModalLong"> 
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+            <div id="article-list-tag" class="col-4 mt-5 pt-5 article_list">
+                <h2>Here Are The Latest:</h2>
+                {% for article in article_list %}
+                    <h5>
+                        <a href="{% url 'article:detail' article.id %}">{{ article.title }}</a>
+                    </h5>
+                {%endfor%}
+            </div>
+        
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="display: flex; justify-content: space-between;">
+                <h5 class="modal-title" id="exampleModalLong">Delete This Article</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white; font-weight: bold; border: none; background-color: #603F26;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure about deleting this article? Deletion can't be undone!</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form id="articleDeleteBtnForm" action="{% url 'article:delete' article.id %}">
+                    {% csrf_token %}
+                    <button id="articleDeleteBtn" type="button" class="btn btn-danger" style="text-decoration: none;" >Delete</button>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Nested Modal -->
+    <div class="modal fade" id="nestedModalDeleteArticle" tabindex="-1" aria-labelledby="nestedModalLabelDeleteArticle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="display: flex; justify-content: center;">
+                    <h5 class="modal-title" id="nestedModalLabelDeleteArticle">Successfully deleted!</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <i style="font-size: 5rem; font-weight: bolder; color: #10eb08;" class="fas fa-check"></i>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" style="background-color:#603F26; color: white;" data-bs-dismiss="modal">
+                        <a href="{% url 'article:article_list' %}" style="text-decoration: none; color: white;">Back to Articles</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>   
+    
+    <!-- Permission denied modal -->
+    <div class="modal fade" id="1223345ModalArticleUpdate" tabindex="-1" aria-labelledby="1223345ModalLabelArticleUpdate" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="display: flex; justify-content: center;">
+                    <h5 class="modal-title" id="1223345ModalLabel">Permission Denied!</h5>
+                </div>
+                <div class="modal-body text-center">
+                    <i style="font-size: 5rem; font-weight: bolder; color: #f31000;" class="fas fa-hippo"></i>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" style="background-color: #603F26; color: white;" data-bs-dismiss="modal">
+                        <a href="{% url 'article:article_list' %}" style="text-decoration: none; color: white;">Back to Articles</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>              
+    
+{% endblock %}
+

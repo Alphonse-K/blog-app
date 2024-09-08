@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div>
+        <div class="confirmation" 
+        style="
+            margin-bottom: 3rem;
+            margin-left: 5rem;
+            margin-right: 5rem;
+            /* background-color: red; */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 60vh;
+        ">
+
+            <h1 class="mb-4">Article Successfully Deleted!</h1>
+            <div style="border: 4px solid rgb(6, 202, 6); border-radius: 50%; display: flex; align-items: center; justify-content: center; height: 10rem; width: 10rem; font-size: 3rem; color: rgb(6, 202, 6)"><i class="fa fa-check"></i></div>
+            <div style="margin-top: 2rem;" class="detail_buttton">
+        
+                <a href="{% url 'article:article_list' %}" type="button">Article List</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

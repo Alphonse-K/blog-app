@@ -1,0 +1,183 @@
+
+/* variables start */
+:root {
+    --color1: #603F26;
+    --color2: #6C4E31;
+
+}
+/* variables end */
+
+.navbar {
+    background-color: var(--color1);
+}
+
+.navbar a {
+    color:white;
+    text-decoration: none;  
+    font-weight: bold;  
+}
+
+.navbar a:hover {
+    color:white;
+    text-decoration: none;    
+}
+
+.navbar .active {
+    color: var(--color1) !important;
+    background-color: white;
+
+}
+
+
+a div > p {
+    color:black;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    text-decoration-color: black;
+}
+
+a:hover > h2 {
+    font-style: italic;
+}
+
+a > h2 {
+    color: rgb(68, 68, 68);
+}
+
+.landing {
+    background-image: url('/static/article/images/news1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.landing > h1 {
+    color: rgb(201, 60, 142);
+    font-style: oblique;
+    position: absolute;
+    bottom: 0;
+    font-size: 5em;
+}
+
+.news_list_class {
+    padding-top: 5rem;
+}
+
+.modal-content {
+    border: none !important;
+}
+
+  
+/* Remove border from modal header, body, and footer if needed */
+.modal-header,
+.modal-body,
+.modal-footer {
+    border: none !important;
+}
+
+#article-list-tag a {
+    color: #603F26;
+}
+
+#article-list-tag a:hover {
+    color: rgba(250, 0, 0, 0.836);
+    
+}
+
+
+footer  div.copyright_class {
+    background-color: var(--color1);
+    color: white;
+}
+
+footer section {
+    background-color: var(--color2);
+    color: white;
+}
+
+footer section h6 {
+    background-color: white;
+    color: var(--color1);
+    text-align: center;
+    font-size: large;
+    padding: 1rem;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: white;
+}
+
+div.article_detail_class {
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+
+div.article_detail_class h1 {
+    margin-top: 1rem
+}
+
+div.article_detail_class img {
+    width: 100%;
+    height: 200px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+
+div.article_list a {
+    color: var(--color1);
+}
+
+div.article_list a:hover {
+    color: black;
+    text-decoration: none ;
+}
+
+.article_content_class {
+    text-align: justify;
+}
+
+div.detail_buttton a {
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+    background-color: var(--color2);
+    border-radius: .5rem;
+}
+
+
+form {
+    margin-left: 20rem;
+    margin-right: 20rem;
+}
+
+#parentFormSubmitBtn {
+    margin-left: 5rem;
+    margin-right: 5rem;
+
+}
+
+form label {
+    font-size: 1.2rem;
+}
+
+form h1 {
+    color: var(--color1);
+    font-weight: bold;
+}
+
+form input {
+    border-color: #ff9900;
+}

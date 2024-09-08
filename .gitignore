@@ -1,0 +1,23 @@
+# Ignore environment files
+.env
+
+# Ignore log files
+*.log
+
+# Ignore compiled Python files
+*.pyc
+__pycache__/
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore database files
+*.sqlite3
+
+# Ignore Docker-related files
+docker-compose.override.yml
+
+# Ignore IDE or editor-specific files
+.vscode/
+.idea/
