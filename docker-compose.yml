@@ -22,6 +22,7 @@ services:
 
   web:
     build: .
+    restart: unless-stopped
     env_file:
       - ./blog/.env
     command: gunicorn blog.wsgi:application --bind 0.0.0.0:8000
