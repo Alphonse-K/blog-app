@@ -15,10 +15,17 @@ services:
   #   volumes:
   #     - postgres_data:/var/lib/postgresql/data
 
+<<<<<<< Updated upstream
   #   ports:
   #     - "5432:5432"
   #   networks:
   #     - blog_django_network
+=======
+    ports:
+      - "5433:5432"
+    networks:
+      - blog_django_network
+>>>>>>> Stashed changes
 
   web:
     build: .
