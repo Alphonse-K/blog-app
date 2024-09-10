@@ -1,15 +1,16 @@
 from django.http import  JsonResponse
-
-from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
+from django.views.generic.edit import UpdateView, DeleteView, CreateView, FormMixin
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 
 
-from .models import Article
+from .models import Article, Comment
 
-from .forms import ArticleForm
+from .forms import ArticleForm, CommentForm
 
 
 class ArticleListView(ListView):
@@ -19,17 +20,61 @@ class ArticleListView(ListView):
     ordering = ['-published_date']  # Order articles by published date in descending order
 
 
-class ArticleDetailView(DetailView):
+class ArticleDetailView(FormMixin, DetailView):
     model = Article
     template_name = "article/detail.html"
     context_object_name = "article"
+    form_class = CommentForm
 
+
+    def get_success_url(self):
+        return reverse('article:detail', kwargs={'pk': self.object.pk})
+    
     def get_context_data(self, **kwargs):
-        # Add additional context (latest articles) to the template
+
+        # Add additional context (latest articles) and comments to the template
         context = super().get_context_data(**kwargs)
-        context['article_list'] = Article.objects.order_by("-published_date")[:15]
+        context['article_list'] = Article.objects.order_by("-published_date")[:10]
+        context['comments'] = self.object.comments.all()
+
+        context['form'] = self.get_form()
         return context
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.article = self.object
+            comment.user = request.user
+            comment.save()
+            return redirect(self.get_success_url())
+        else:
+            return self.form_invalid(form)
+
+class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = "article/comment_update.html"
+
+    def get_success_url(self):
+        return reverse('article:detail', kwargs={'pk': self.object.article.pk})
+
+    def get_context_data(self, **kwargs):
+
+        # Add additional context (latest articles) and comments to the template
+        context = super().get_context_data(**kwargs)
+        context['article_list'] = Article.objects.order_by("-published_date")[:10]
+        context['article'] = self.object.article
+        context['comments'] = self.object.article.comments.all()
+        # print(context['article'].values)
+        return context
+
+    def test_func(self):
+        comment = self.get_object()
+        return comment.user == self.request.user  # Check if the current user is the comment owner
+    
 
 class ArticleCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Article

@@ -22,8 +22,6 @@ print(f"DB_PASSWORD: {os.getenv('DB_PASSWORD')}")
 print(f"DB_HOST: {os.getenv('DB_HOST')}")
 print(f"DB_PORT: {os.getenv('DB_PORT')}")
 # Initialize environment variables
-# env = environ.Env()
-# environ.Env.read_env()  # Reads the .env file
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -183,4 +181,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
 

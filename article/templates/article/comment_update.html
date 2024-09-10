@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %} 
+
+{% load static %}
+{% block title %}{{article.title}}{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row mt-3 pt-3 mx-2">
+
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8 article_detail_class">
+                <h1>{{ article.title }}</h1>
+                <p style="margin-top: 1rem; color: grey; font-style: italic;">By {{ article.author.first_name }} {{ article.author.last_name }} on {{ article.published_date }}</p>
+            
+                {% if article.image %}
+                    <img src="{{article.image.url }}" alt="{{ article.title }}">
+                {% else %}
+                    <p>No image available for this article.</p>
+                {% endif %}
+            
+                <div class="mb-5 article_content_class">
+                    {{ article.content }}
+                </div>
+                <div class="update-buttons" style=" display: flex; justify-content: space-between;">
+                    <div  class="btn detail_buttton" >
+                        <a href="{% url 'article:article_list' %}" type="button">Article List</a>
+                    </div>
+                </div>
+            
+            </div>
+            <div id="article-list-tag" class="col-12 col-sm-12 col-md-12 col-lg-4 mt-5 pt-5 article_list">
+                <h2>Here Are The Latest:</h2>
+                {% for article in article_list %}
+                    <h5>
+                        <a href="{% url 'article:detail' article.id %}">{{ article.title }}</a>
+                    </h5>
+                {%endfor%}
+                <div class="mt-5 comment-article" >
+                    {% for comment in comments %}
+                        <div style="display: flex;">
+                            <div>
+                                <i class="fas fa-user"></i>
+                                <span style="color: #603F26; font-weight: bolder;">{{ comment.user.username }} -</span>
+                                <span style="color: #6C4E31;">created on <small style="color: #b1afae;">{{ comment.created_at }}</small></span>
+                                <p>{{ comment.content }}</p>
+                            </div>
+                            <div class="mx-2">
+                                {% if comment.user == user %}
+                                    <a href="{% url 'article:edit_comment' comment.id %}" type="button"><i class="fas fa-pen"></i></a>
+                                {% endif %}
+                            </div>                 
+                        </div>
+                    {%endfor%}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{ form|crispy}}
+                        <input style="border: none; background-color: #603F26; color: white;" type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    
+{% endblock %}
+

@@ -3,8 +3,9 @@
 
 
 {% block content %}
+<div class="container d-flex justify-content-center">
 
-  <form class="col-5" method="post" action="{% url 'login' %}" style="margin-top: 5rem; margin-bottom: 5rem;" >
+  <form class="col-12 col-sm-12 col-md-7 col-lg-6" method="post" action="{% url 'login' %}" style="margin-top: 5rem; margin-bottom: 5rem;" >
     <h3 style="margin-bottom: 2rem;">Login into your account</h3>
     {% csrf_token %}
     {{ form | crispy }}
@@ -15,6 +16,7 @@
       <p><a style="margin-top: 3rem;" href="{% url 'signup:signup' %}">Don't have an account yet?</a></p>
     </div>
   </form>
+</div>
 
   {# Assumes you set up the password_reset view in your URLconf #}
 

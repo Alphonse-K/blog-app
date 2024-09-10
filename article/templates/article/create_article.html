@@ -7,13 +7,13 @@
         <h1>Add an article</h1><br>
         {% csrf_token %}
         <div class="form row">
-            <div class="form-group col-6 mb-3" style="color: #603F26">
+            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 mb-3" style="color: #603F26">
                 {{ form.title|as_crispy_field }}              
                 {{ form.summary|as_crispy_field }}        
                 {{ form.image|as_crispy_field }}              
       
             </div>
-            <div class="form-group col-6 mb-3">
+            <div class="form-group col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
                 {{ form.published_date|as_crispy_field }}              
                 {{ form.author|as_crispy_field }}              
                 {{ form.content|as_crispy_field }}              

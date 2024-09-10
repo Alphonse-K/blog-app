@@ -4,12 +4,11 @@
 {% block content %}
     <div class="container-fluid">
         <div class="landing">           
-            <h1>Get the latest infos!</h1>
         </div>
         <!-- class="row news_list_class" -->
         <div class="row news_list_class">
             {% for article in articles %}
-            <div class="col-6">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 ">
                 <a href="{% url 'article:detail' article.id %}">
                     <h2 style="text-decoration: underline;">{{ article.title }}</h2>
                     <div class="row">

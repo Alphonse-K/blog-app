@@ -23,135 +23,126 @@
 
         <a class="navbar-brand" href="{% url 'article:article_list' %}">NEWS BLOGS!</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span style="border-color: white;" class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav ms-auto">
+          <div class="navbar-nav ms-auto mt-2">
             <a class="nav-item nav-link active" href="{% url 'article:article_list' %}">Article List <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="{% url 'article:create_article' %}">Add Article</a>
           </div>
           {% if user.is_authenticated %}
-            <div
-              style="
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                color: white;
-                margin-left: 2rem;
-              " 
-            >
+            <div class="connection-section">
               <div style="margin-right: .1rem;background-color: rgb(13, 206, 13); height: 10px; width: 10px; display: flex; align-items: center; color: white; border-radius: 50%;"></div>
               <span style="margin-right: 1.5rem">{{ user.username }}</span>
               <form style="margin: 0;" id="logout-form" method="post" action="{% url 'logout' %}">
                 {% csrf_token %}
                 <button style="color: white; text-decoration: none;" type="submit" class="btn btn-link">Logout</button>
               </form>            
-          {% else %}
-            <div style=" text-decoration: none; margin-left: 5rem;"><a style="color: rgb(133, 131, 131);"  href="{% url 'login' %}?next={{ request.path }}">Login</a></div>
+              {% else %}
+                <div class="login-section" style="text-decoration: none; margin-left: 5rem;"><a style="color: rgb(133, 131, 131);"  href="{% url 'login' %}?next={{ request.path }}">Login</a></div>
+              </div>
           {% endif %}
-          </div>
         </div>
       </div>
     </nav>
     {% block content %}
     {% endblock %}
     <!-- Footer -->
-<!-- Footer -->
-<footer class="text-center text-lg-start bg-body-tertiary text-muted">
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-body-tertiary text-muted">
 
-  <!-- Section: Links  -->
-  <section class="">
-    <div class="container text-center text-md-start mt-5 pt-5">
-      <!-- Grid row -->
-      <div class="row mt-3">
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-          <!-- Content -->
-          <a href="{% url 'article:article_list' %}">           
-            <h6 class="text-uppercase fw-bolder mb-4">
-              <i class="fas fa-gem me-3"></i>News Blog
-            </h6>
+      <!-- Section: Links  -->
+      <section class="">
+        <div class="container text-center text-md-start mt-5 pt-5">
+          <!-- Grid row -->
+          <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <!-- Content -->
+              <a href="{% url 'article:article_list' %}">           
+                <h6 class="text-uppercase fw-bolder mb-4">
+                  <i class="fas fa-gem me-3"></i>News Blog
+                </h6>
+              </a>
+              <p>
+                Here you can find the latest news about the world. Discover what you don't usually hear about.
+              </p>
+            </div>
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bolder mb-4">
+                Useful links
+              </h6>
+              <p style="text-align: center;">
+                <a href="{% url 'article:article_list' %}" class="text-reset">Artcle List</a>
+              </p>
+              <p style="text-align: center;">
+                <a href="{% url 'article:create_article' %}" class="text-reset">Add Article</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+              <!-- Links -->
+              <h6 class="text-uppercase fw-bolder mb-4">Contact</h6>
+              <p><i class="fas fa-home me-3"></i>Guinea - Conakry</p>
+              <p>
+                <i class="fas fa-envelope me-3"></i>
+                info@alphonse.com
+              </p>
+              <p><i class="fas fa-phone me-3"></i> 623 00 00 00</p>
+              <p><i class="fas fa-print me-3"></i> 611 00 33 99</p>
+            </div>
+            <!-- Grid column -->
+          </div>
+          <!-- Grid row -->
+        </div>
+      </section>
+      <!-- Section: Links  -->
+
+      <!-- Section: Social media -->
+      <section class="d-flex justify-content-center justify-content-lg-between p-4">
+        <!-- Left -->
+        <div class="me-5 d-none d-lg-block">
+          <span style="font-weight: bold; font-size: 1.2rem;">Get connected with us on social networks:</span>
+        </div>
+        <!-- Left -->
+
+        <!-- Right -->
+        <div>
+          <a href="#!" class="me-4 text-reset">
+            <i class="fab fa-facebook-f"></i>
           </a>
-          <p>
-            Here you can find the latest news about the world. Discover what you don't usually hear about.
-          </p>
+          <a href="#!" class="me-4 text-reset">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#!" class="me-4 text-reset">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="#!" class="me-4 text-reset">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#!" class="me-4 text-reset">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="#!" class="me-4 text-reset">
+            <i class="fab fa-github"></i>
+          </a>
         </div>
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bolder mb-4">
-            Useful links
-          </h6>
-          <p style="text-align: center;">
-            <a href="{% url 'article:article_list' %}" class="text-reset">Artcle List</a>
-          </p>
-          <p style="text-align: center;">
-            <a href="{% url 'article:create_article' %}" class="text-reset">Add Article</a>
-          </p>
-        </div>
-        <!-- Grid column -->
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
 
-        <!-- Grid column -->
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bolder mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i>Guinea - Conakry</p>
-          <p>
-            <i class="fas fa-envelope me-3"></i>
-            info@alphonse.com
-          </p>
-          <p><i class="fas fa-phone me-3"></i> 623 00 00 00</p>
-          <p><i class="fas fa-print me-3"></i> 611 00 33 99</p>
-        </div>
-        <!-- Grid column -->
+
+      <!-- Copyright -->
+      <div class="text-center p-4 copyright_class" >
+        © 2024 Copyright:
+        <a class="text-reset fw-bold" href="#!">Alphonse KAMAN</a>
       </div>
-      <!-- Grid row -->
-    </div>
-  </section>
-  <!-- Section: Links  -->
-
-  <!-- Section: Social media -->
-  <section class="d-flex justify-content-center justify-content-lg-between p-4">
-    <!-- Left -->
-    <div class="me-5 d-none d-lg-block">
-      <span style="font-weight: bold; font-size: 1.2rem;">Get connected with us on social networks:</span>
-    </div>
-    <!-- Left -->
-
-    <!-- Right -->
-    <div>
-      <a href="#!" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="#!" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="#!" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="#!" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="#!" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="#!" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
-
-
-  <!-- Copyright -->
-  <div class="text-center p-4 copyright_class" >
-    © 2024 Copyright:
-    <a class="text-reset fw-bold" href="#!">Alphonse KAMAN</a>
-  </div>
-  <!-- Copyright -->
-</footer>
-<!-- Footer -->  <!-- Footer -->
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->  <!-- Footer -->
 
 <!-- <script src="{% static 'js/scripts.js' %}"></script> -->
 

@@ -25,9 +25,25 @@
 .navbar .active {
     color: var(--color1) !important;
     background-color: white;
-
 }
 
+.container .navbar-toggler {
+    background-color: rgb(255, 255, 255);
+}
+
+.container .navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.container .connection-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    margin-left: 2rem;
+}
 
 a div > p {
     color:black;
@@ -56,21 +72,12 @@ a > h2 {
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
+    height: 80vh;
 }
 
-.landing > h1 {
-    color: rgb(201, 60, 142);
-    font-style: oblique;
-    position: absolute;
-    bottom: 0;
-    font-size: 5em;
-}
 
 .news_list_class {
-    padding-top: 5rem;
+    padding-top: 3rem;
 }
 
 .modal-content {
@@ -119,8 +126,8 @@ footer a:hover {
 }
 
 div.article_detail_class {
-    padding-left: 6rem;
-    padding-right: 6rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 div.article_detail_class h1 {
@@ -129,11 +136,16 @@ div.article_detail_class h1 {
 
 div.article_detail_class img {
     width: 100%;
-    height: 200px;
+    height: 100vh;
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
 
+div.article_list {
+    padding-left: 3rem;
+    padding-right: 3rem;
+
+}
 
 div.article_list a {
     color: var(--color1);
@@ -153,8 +165,15 @@ div.detail_buttton a {
     text-decoration: none;
     color: white;
     padding: 1rem;
-    background-color: var(--color2);
+    background-color: var(--color1);
     border-radius: .5rem;
+}
+
+div.comment-article > form {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 2rem;
+
 }
 
 
@@ -180,4 +199,98 @@ form h1 {
 
 form input {
     border-color: #ff9900;
+}
+
+form.pass-reset-section {
+    margin: 5rem;
+}
+
+div.pass-reset-section-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media(max-width: 991px) {
+    .container .connection-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; 
+        align-items: center;
+      }
+
+    .container .connection-section button {
+        padding-right: 0;
+    }
+    .container .login-section {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    form.pass-word-reset-form {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+    
+}
+
+@media(max-width:991px) {
+    .landing {
+        width: 100%;
+        height: 50vh;
+    }
+    div.article_detail_class {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    div.article_detail_class p {
+        font-size: .9rem;
+    }
+    
+    div.article_detail_class img {
+        width: 100%;
+        height: auto;
+        padding-top: 0;
+        padding-bottom: 1rem;
+    }
+    div.article_list {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    
+    }
+
+    div.pass-word-reset-form-container {
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+@media(max-width:575px) {
+    div.article_list {
+        padding-left: 0;
+        padding-right: 0;
+    
+    }
+
+    form.pass-reset-section {
+        margin: 1rem;
+    }
+}
+
+@media(max-width:405px) {
+    div.update-buttons {
+        display: flex;
+        flex-direction: column;
+    }
+    div.update-buttons div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+    }
+    div.detail_buttton  {
+        background-color: var(--color1) !important;
+
+    }
+    
 }
